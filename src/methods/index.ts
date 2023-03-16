@@ -1,5 +1,5 @@
 import { AnySchema } from 'yup';
-import { JSONSchema7 } from 'json-schema';
+import { JsonSchemaCallback } from '../types';
 
 type YupParams = {
   addMethod: any;
@@ -28,8 +28,6 @@ function addMethod(yup: YupParams, name: string) {
     });
   });
 }
-
-type JsonSchemaCallback = (jsonSchema: JSONSchema7) => JSONSchema7;
 
 export function extendSchema(yup: YupParams) {
   addMethod(yup, 'example');

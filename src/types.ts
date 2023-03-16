@@ -24,7 +24,6 @@ export type Meta = {
   example?: JSONSchema7Type;
   examples?: [JSONSchema7Type];
   jsonSchema?: JSONSchema7;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };
 
@@ -35,3 +34,5 @@ export type ResolveOptions = {
   context?: unknown;
   converters?: Converters;
 };
+
+export type JsonSchemaCallback = (jsonSchema: JSONSchema7) => JSONSchema7;
