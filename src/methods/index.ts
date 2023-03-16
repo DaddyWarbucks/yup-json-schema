@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { AnySchema } from 'yup';
 import { JsonSchemaCallback } from '../types';
 
@@ -7,12 +9,59 @@ type YupParams = {
 };
 
 declare module 'yup' {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  interface StringSchema<TType, TContext, TDefault, TFlags> {
-    example(example: string): this;
-    examples(examples: [any]): this;
+  interface ArraySchema<TIn, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
     description(description: string): this;
-    jsonSchema(description: { [key: string]: any }): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface BooleanSchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface DateSchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface LazySchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface MixedSchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface NumberSchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface ObjectSchema<TIn, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface StringSchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
+  }
+  interface TupleSchema<TType, TContext, TDefault, TFlags> {
+    example(example: any): this;
+    examples(examples: any[]): this;
+    description(description: string): this;
+    jsonSchema(callback: JsonSchemaCallback): this;
   }
 }
 

@@ -9,8 +9,13 @@ const tupleConverter: Converter = (description, converters) => {
 
   // TODO: Yup does not describe innerTypes of tuple
   // https://github.com/jquense/yup/issues/1891
-  // console.log(description);
-  // jsonSchema.items = [{ type: 'string' }];
+  // https://github.com/jquense/yup/pull/1947
+  // jsonSchema.items = description.innerType.map((description) => {
+  //   return commonConverter(description, converters);
+  // });
+
+  // jsonSchema.minItems = jsonSchema.items.length;
+  // jsonSchema.maxItems = jsonSchema.items.length;
 
   return Object.assign(jsonSchema, meta.jsonSchema);
 };
