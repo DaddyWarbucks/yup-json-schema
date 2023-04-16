@@ -2,6 +2,8 @@
 
 Convert yup schemas to JSON Schema Draft-07 schemas.
 
+** Requires Yup v1! **
+
 ```js
 import { object, string, array, tuple, date, boolean, number } from 'yup';
 import { convertSchema } from 'yup-json-schema';
@@ -28,6 +30,8 @@ jsonSchema = {
     address: {
       type: 'array',
       title: 'Address',
+      minItems: 2,
+      maxItems: 2,
       items: [
         {
           type: 'string'
@@ -61,6 +65,17 @@ jsonSchema = {
     }
   }
 };
+```
+
+Add additional JSON Schema information to the `jsonSchema` property via the `meta()` method. This will be shallow merged with the result of the conversion.
+
+```js
+const schema = object({ ... }).meta({
+  jsonSchema: {
+    $id: '...'
+    description: '...'
+  }
+});
 ```
 
 You can also use the `extendSchema` to add helpful methods to all of your yup schemas. Use the `example`, `examples`, `description`, and `jsonSchema` methods to add common proprties to your JSON Schemas.
@@ -135,6 +150,8 @@ jsonSchema = {
       title: 'Address',
       description: 'Your Address',
       example: ['Nashville', 'TN'],
+      minItems: 2,
+      maxItems: 2,
       items: [
         {
           type: 'string'
@@ -142,9 +159,7 @@ jsonSchema = {
         {
           type: 'string'
         }
-      ],
-      minItems: 2,
-      maxItems: 2
+      ]
     },
     hobbies: {
       type: 'array',
@@ -181,7 +196,7 @@ jsonSchema = {
 };
 ```
 
-Use the `ResolveOptions` argument to pass context to allow for better `when` and `lazy` methods.
+Use the second argument `ResolveOptions` to pass context to allow for better `when` and `lazy` methods. This argument is passed to the underlying `describe(options)`
 
 ```js
 import { object, number } from 'yup';
@@ -194,7 +209,7 @@ const schema = object({
 });
 
 const schema = object({
-  rank: lazy((name) => {
+  rank: lazy(({ name }) => {
     return name === 'Johnny Cash' ? number().min(100) : number().min(0);
   })
 });
