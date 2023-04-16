@@ -20,9 +20,6 @@ export type Converter = (
 ) => JSONSchema7;
 
 export type Meta = {
-  description?: string;
-  example?: JSONSchema7Type;
-  examples?: [JSONSchema7Type];
   jsonSchema?: JSONSchema7;
   [key: string]: any;
 };
