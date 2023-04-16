@@ -1,5 +1,5 @@
 import { SchemaDescription } from 'yup';
-import { Converter, Meta } from '../types';
+import { Converter, Converters, Meta } from '../types';
 import commonConverter from './common';
 
 type TupleDescription = SchemaDescription & {
@@ -16,7 +16,8 @@ const tupleConverter: Converter = (
   jsonSchema.type = 'array';
 
   jsonSchema.items = description.innerType.map((description) => {
-    return commonConverter(description, converters);
+    const converter = converters[description.type as keyof Converters];
+    return converter(description, converters);
   });
 
   jsonSchema.minItems = jsonSchema.items.length;
